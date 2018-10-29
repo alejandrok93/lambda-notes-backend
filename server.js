@@ -4,6 +4,7 @@
 const express = require("express");
 const helmet = require("helmet");
 const cors = require("cors");
+const NotesRoutes = require("./routes/LambdaNotesRoutes.js");
 
 //initialize server
 const server = express();
@@ -12,6 +13,7 @@ const server = express();
 server.use(express.json());
 server.use(helmet());
 server.use(cors());
+server.use("/api/", NotesRoutes);
 
 //routes
 
