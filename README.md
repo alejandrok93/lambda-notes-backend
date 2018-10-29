@@ -1,10 +1,10 @@
-# lambda-notes-backend
+<h1>Lambda Notes Backend Project </h1>
 
 Lambda Notes Backend Projects - Create a Web API for a note taking app called Lambda Notes
 
 Trello Board: https://trello.com/b/3acD9aMh/lambda-notes-backend-alejandro-krasovsky
 
-<h1>Backend MVP Features </h1>
+<h2>Backend MVP Features </h2>
 <ul>
 <li>Add data persistence using a Relational Database. We suggest you start with SQLite3.</li>
 <li>Create a Web API for the React application you built in the front-end project week.</li>
