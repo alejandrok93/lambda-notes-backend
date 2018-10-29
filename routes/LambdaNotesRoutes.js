@@ -52,8 +52,6 @@ router.put("/notes/:id", (req, res) => {
   const updatedNote = req.body;
   const id = req.params.id;
   if (!updatedNote.title || !id) {
-    console.log(updatedNote);
-    console.log(id);
     res.status(400).json({ error: "Bad Request" });
   } else {
     db.update(id, updatedNote)
@@ -68,5 +66,20 @@ router.put("/notes/:id", (req, res) => {
       })
       .catch(err => res.status(500).json(err));
   }
+});
+
+router.delete("/notes/:id", (req, res) => {
+  const id = req.params.id;
+  if (!id) {
+    res.status(400).json({ error: "Bad Request" });
+  }
+  db.remove(id)
+    .then(deletedRows => {
+      if (deletedRows > 0) {
+        res.status(202).json({ message: "Note was deleted" });
+      } else
+        res.status(500).json({ error: "There was an error deleting the note" });
+    })
+    .catch(err => res.status(500).json(err));
 });
 module.exports = router;

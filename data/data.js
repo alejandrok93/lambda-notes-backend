@@ -22,4 +22,10 @@ function update(id, note) {
     .update(note);
 }
 
-module.exports = { insert, get, getNote, update };
+function remove(id) {
+  return db("notes")
+    .where({ id: id })
+    .del();
+}
+
+module.exports = { insert, get, getNote, update, remove };
