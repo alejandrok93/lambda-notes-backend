@@ -47,4 +47,26 @@ router.post("/notes", (req, res) => {
     .then(idObj => res.status(201).json({ noteId: idObj[0] }))
     .catch(err => res.status(500).json(err));
 });
+
+router.put("/notes/:id", (req, res) => {
+  const updatedNote = req.body;
+  const id = req.params.id;
+  if (!updatedNote.title || !id) {
+    console.log(updatedNote);
+    console.log(id);
+    res.status(400).json({ error: "Bad Request" });
+  } else {
+    db.update(id, updatedNote)
+      .then(idObj => {
+        console.log(idObj);
+        if (idObj > 0) {
+          res.status(200).json({ messge: "Note was updated" });
+        } else
+          res
+            .status(500)
+            .json({ error: "There was an error updating the note" });
+      })
+      .catch(err => res.status(500).json(err));
+  }
+});
 module.exports = router;

@@ -16,4 +16,10 @@ function getNote(id) {
   return db("notes").where({ id: id });
 }
 
-module.exports = { insert, get, getNote };
+function update(id, note) {
+  return db("notes")
+    .where({ id: id })
+    .update(note);
+}
+
+module.exports = { insert, get, getNote, update };
