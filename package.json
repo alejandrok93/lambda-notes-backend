@@ -1,0 +1,19 @@
+{
+  "name": "lambda-notes-backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/alejandrok93/lambda-notes-backend.git",
+  "author": "alejandrok93 <alejandrok93@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.4",
+    "express": "^4.16.4",
+    "helmet": "^3.14.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.5"
+  }
+}
