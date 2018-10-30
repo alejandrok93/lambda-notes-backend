@@ -3,6 +3,9 @@ const express = require("express");
 const router = express.Router();
 const db = require("../data/data.js");
 
+//Import middleware
+const { authenticate } = require("./middleware.js");
+
 router.get("/", (req, res) => {
   res.send("hello world");
 });
@@ -36,9 +39,10 @@ router.get("/notes/:id", (req, res) => {
     .catch(err => res.status(500).json(err));
 });
 
-router.post("/notes", (req, res) => {
+router.post("/notes", authenticate, (req, res) => {
+  console.log("\n CREATE NEW NOTE \n");
   const newNote = req.body;
-
+  newNote.user_id = req.decoded.id;
   if (!newNote.title) {
     res.status(400).json({ error: "Bad Request" });
   }

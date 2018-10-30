@@ -5,6 +5,7 @@ const express = require("express");
 const helmet = require("helmet");
 const cors = require("cors");
 const NotesRoutes = require("./routes/LambdaNotesRoutes.js");
+const UsersRoutes = require("./routes/UsersRoutes.js");
 
 //initialize server
 const server = express();
@@ -14,7 +15,6 @@ server.use(express.json());
 server.use(helmet());
 server.use(cors());
 server.use("/api/", NotesRoutes);
-
-//routes
+server.use("/api/users/", UsersRoutes);
 
 module.exports = server;
