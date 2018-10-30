@@ -12,6 +12,12 @@ function get() {
   return db("notes");
 }
 
+function getNotes() {
+  return db
+    .select("*")
+    .from("notes")
+    .leftJoin("users", "notes.user_id", "=", "users.id");
+}
 function getNote(id) {
   return db("notes").where({ id: id });
 }
@@ -28,4 +34,4 @@ function remove(id) {
     .del();
 }
 
-module.exports = { insert, get, getNote, update, remove };
+module.exports = { insert, get, getNotes, getNote, update, remove };
