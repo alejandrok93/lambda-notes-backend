@@ -4,12 +4,10 @@ const router = express.Router();
 const db = require("../data/usersData.js");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-require("dotenv").load();
 
 //Set up Authentication config
 const secret = require("./keys.js").key;
-const key = process.env_SECRET_KEY;
-console.log(key);
+
 //Import middleware
 const middleware = require("./middleware.js");
 
