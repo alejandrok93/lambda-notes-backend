@@ -9,8 +9,7 @@ const jwt = require("jsonwebtoken");
 const secret = require("./keys.js").key;
 
 //Import middleware
-const middleware = require('./middleware.js');
-
+const middleware = require("./middleware.js");
 
 router.get("/", (req, res) => {
   db.get()

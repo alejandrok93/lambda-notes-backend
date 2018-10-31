@@ -1,1 +1,1 @@
-module.exports = { key: "This-Is.my&Secret*KEY_that(we)use" };
+module.exports = { key: process.env.SECRET_KEY };

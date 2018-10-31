@@ -43,6 +43,7 @@ router.post("/notes", authenticate, (req, res) => {
   console.log("\n CREATE NEW NOTE \n");
   const newNote = req.body;
   newNote.user_id = req.decoded.id;
+  console.log(newNote);
   if (!newNote.title) {
     res.status(400).json({ error: "Bad Request" });
   }

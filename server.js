@@ -1,3 +1,7 @@
+//Config env variables
+const dotenv = require("dotenv");
+dotenv.config();
+
 //Set up Server configuration:
 
 //import dependencies
