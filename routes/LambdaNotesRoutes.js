@@ -26,6 +26,7 @@ router.get("/notes/:id", (req, res) => {
   const id = req.params.id;
   if (!id) {
     res.status(400).json({ error: "Bad Request" });
+    return;
   }
 
   db.getNote(id)
@@ -46,6 +47,7 @@ router.post("/notes", authenticate, (req, res) => {
   console.log(newNote);
   if (!newNote.title) {
     res.status(400).json({ error: "Bad Request" });
+    return;
   }
 
   db.insert(newNote)
@@ -77,6 +79,7 @@ router.delete("/notes/:id", (req, res) => {
   const id = req.params.id;
   if (!id) {
     res.status(400).json({ error: "Bad Request" });
+    return;
   }
   db.remove(id)
     .then(deletedRows => {

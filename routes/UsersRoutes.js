@@ -22,6 +22,7 @@ router.post("/register", (req, res) => {
 
   if (!user.username || !user.password) {
     res.status(400).json({ error: "Bad Request" });
+    return;
   }
   const hash = bcrypt.hashSync(user.password, 14);
   user.password = hash;
@@ -42,6 +43,7 @@ router.post("/login", (req, res) => {
   const creds = req.body;
   if (!creds.username || !creds.password) {
     res.status(400).json({ error: "Bad Request" });
+    return;
   }
   db.getUserByUsername(creds.username)
     .then(user => {
