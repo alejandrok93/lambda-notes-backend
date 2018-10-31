@@ -45,9 +45,11 @@ router.post("/login", (req, res) => {
     res.status(400).json({ error: "Bad Request" });
     return;
   }
+  console.log(creds);
   db.getUserByUsername(creds.username)
     .then(user => {
       if (user && bcrypt.compareSync(creds.password, user.password)) {
+        console.log("User was found in DB");
         const token = generateToken(user);
         res.status(200).json({ username: user.username, token });
       } else res.status(500).json({ error: "There was an error logging in" });
