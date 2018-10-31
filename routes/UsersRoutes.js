@@ -34,9 +34,9 @@ router.post("/register", (req, res) => {
           const token = generateToken(user);
           res.status(201).json({ username: user.username, token });
         })
-        .catch(err => res.status(500).json(err));
+        .catch(err => res.status(500).json({ error: err }));
     })
-    .catch(err => res.status(500).json(err));
+    .catch(err => res.status(500).json({ error: err }));
 });
 
 router.post("/login", (req, res) => {
@@ -48,11 +48,16 @@ router.post("/login", (req, res) => {
   console.log(creds);
   db.getUserByUsername(creds.username)
     .then(user => {
+      console.log("User was found in DB");
+      console.log("here is the user:");
+      console.log(user);
       if (user && bcrypt.compareSync(creds.password, user.password)) {
-        console.log("User was found in DB");
         const token = generateToken(user);
         res.status(200).json({ username: user.username, token });
-      } else res.status(500).json({ error: "There was an error logging in" });
+      } else {
+        console.log("There was something wrong with the BCRYPT comparison");
+        res.status(500).json({ error: "There was an error logging in" });
+      }
     })
     .catch(err => res.status(500).json(err));
 });
