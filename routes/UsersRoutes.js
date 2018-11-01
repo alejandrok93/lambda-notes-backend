@@ -54,6 +54,7 @@ router.post("/login", (req, res) => {
       console.log("the comparison was: ");
       console.log(bcrypt.compareSync(creds.password, user.password));
       if (user && bcrypt.compareSync(creds.password, user.password)) {
+        console.log("inside if statement");
         res.send(user.username);
         const token = generateToken(user);
         console.log(token);
@@ -67,6 +68,7 @@ router.post("/login", (req, res) => {
 });
 
 const generateToken = user => {
+  console.log("inside generateToken function");
   const payload = {
     ...user
   };
