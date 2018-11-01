@@ -56,7 +56,8 @@ router.post("/login", (req, res) => {
       if (user && bcrypt.compareSync(creds.password, user.password)) {
         const token = generateToken(user);
         console.log(token);
-        res.status(200).json({ username: user.username, token });
+        //res.status(200).json({ username: user.username, token });
+        res.send(user.username);
       } else {
         console.log("There was something wrong with the BCRYPT comparison");
         res.status(500).json({ error: "There was an error logging in" });
