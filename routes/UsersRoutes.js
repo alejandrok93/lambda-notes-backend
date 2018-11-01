@@ -56,7 +56,7 @@ router.post("/login", (req, res) => {
       if (user && bcrypt.compareSync(creds.password, user.password)) {
         console.log("inside if statement");
         res.send(user.username);
-        const token = await generateToken(user);
+        const token = generateToken(user);
         console.log(token);
         //res.status(200).json({ username: user.username, token });
       } else {
@@ -67,7 +67,7 @@ router.post("/login", (req, res) => {
     .catch(err => res.status(500).json(err));
 });
 
-async function generateToken(user) {
+function generateToken(user) {
   console.log("inside generateToken function");
   console.log(user);
   const payload = {
