@@ -51,6 +51,7 @@ router.post("/login", (req, res) => {
       console.log("User was found in DB");
       console.log("here is the user:");
       console.log(user);
+
       if (user && bcrypt.compareSync(creds.password, user.password)) {
         const token = generateToken(user);
         res.status(200).json({ username: user.username, token });
