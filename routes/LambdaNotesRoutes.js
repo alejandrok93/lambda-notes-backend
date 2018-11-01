@@ -40,7 +40,7 @@ router.get("/notes/:id", (req, res) => {
     .catch(err => res.status(500).json(err));
 });
 
-router.post("/notes", (req, res) => {
+router.post("/notes", authenticate, (req, res) => {
   console.log("\n CREATE NEW NOTE \n");
   const newNote = req.body;
   if (req.decoded) {

@@ -52,13 +52,13 @@ router.post("/login", (req, res) => {
       console.log("here is the user:");
       console.log(user);
       console.log("the comparison was: ");
-      console.log(bcrypt.compareSync(creds.password, user.password));
+
       if (user && bcrypt.compareSync(creds.password, user.password)) {
         console.log("inside if statement");
-        res.send(user.username);
+
         const token = generateToken(user);
         console.log(token);
-        //res.status(200).json({ username: user.username, token });
+        res.status(200).json({ username: user.username, token });
       } else {
         console.log("There was something wrong with the BCRYPT comparison");
         res.status(500).json({ error: "There was an error logging in" });
@@ -75,7 +75,6 @@ function generateToken(user) {
   };
   const options = { expiresIn: "1h" };
   console.log("console loggin the token");
-  console.log(jwt);
   const token = jwt.sign(payload, secret, options);
   console.log(token);
   return token;
