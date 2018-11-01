@@ -75,6 +75,7 @@ function generateToken(user) {
   };
   const options = { expiresIn: "1h" };
   console.log("console loggin the token");
+  console.log(jwt);
   const token = jwt.sign(payload, secret, options);
   console.log(token);
   return token;
