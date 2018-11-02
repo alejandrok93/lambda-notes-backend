@@ -31,6 +31,8 @@ router.post("/register", (req, res) => {
       const id = idObj[0];
       db.getUserById(id)
         .then(user => {
+          console.log(user);
+          res.json(user);
           const token = generateToken(user);
           res.status(201).json({ username: user.username, token });
         })
