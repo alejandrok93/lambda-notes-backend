@@ -11,13 +11,13 @@ router.get('/', (req, res) => {
 });
 
 router.get('/notes', authenticate, (req, res) => {
+	console.log(req.decoded);
 	if (!req.decoded.id) {
 		res.status(500).json(err);
 	}
 	let user_id = req.decoded.id;
 	db.getNotes(user_id)
 		.then(notes => {
-			console.log(notes);
 			if (!notes || notes.length === 0) {
 				res
 					.status(500)

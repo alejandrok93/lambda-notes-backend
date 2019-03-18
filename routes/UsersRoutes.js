@@ -61,7 +61,7 @@ router.post("/login", (req, res) => {
         return res.status(200).json({ username: user.username, token });
       } else {
         console.log("There was something wrong with the BCRYPT comparison");
-        res.status(500).json({ error: "There was an error logging in" });
+        res.status(400).json({ error: "There was an error logging in" });
       }
     })
     .catch(err => res.status(500).json(err));
